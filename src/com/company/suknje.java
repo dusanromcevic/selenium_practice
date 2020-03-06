@@ -34,14 +34,16 @@ public class suknje {
 
         //switch to iFrame
 
-        WebElement fr = driver.findElement(By.cssSelector("iframe[class='fancybox-iframe']"));
-        wait.until(ExpectedConditions.visibilityOf(fr));
-//        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.cssSelector("iframe[class='fancybox-iframe']")));
+        WebElement frame = driver.findElement(By.cssSelector("iframe[class='fancybox-iframe']"));
+//        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(fr));
+
+        wait.until(ExpectedConditions.visibilityOf(frame));
+        driver.switchTo().frame(frame);
 
 
-
-//        driver.switchTo().frame(driver.findElement(By.cssSelector("iframe[class='fancybox-iframe']")));
-        System.out.println(driver.findElement(By.cssSelector("div[id='short_description_content'] p")).getText());
+        WebElement opis = driver.findElement(By.xpath("//*[@id='short_description_content']/p"));
+        wait.until(ExpectedConditions.elementToBeClickable(opis));
+        System.out.println(opis.getText());
 /*
         // dropdown handling
         Select velicina = new Select(driver.findElement(By.id("group_1")));
